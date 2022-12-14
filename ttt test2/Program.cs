@@ -40,7 +40,7 @@ namespace ttt_test2
                             
                         }
                         Console.WriteLine("");
-                        // finally I did it   YYIIPPPEEEEE . ..  wait how will I change parts to x or o . . . oh no
+                        // finally I did it   YYIIPPPEEEEE . ..  wait how will I change parts to x or o . . . oh no . . .            . . .
 
                     }
                     if (turn == true) // turn system
@@ -54,7 +54,7 @@ namespace ttt_test2
                         int input = Convert.ToInt32(Console.ReadLine());
                         
                         turn = false;
-                    }
+                    }       // this looks awful
                     else
                     {
                      
