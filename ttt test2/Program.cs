@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ttt_test2
 {// IM SURE THERE IS A WAY EASIER WAY TO WRITE THIS BUT IM NOT SMART AND DON'T REALLY KNOW WHAT IM DOING SO     OH WELL . . . 
@@ -6,9 +7,9 @@ namespace ttt_test2
     internal class Program
     {
        
-        static int[,] brettspiel = new int[3, 3] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };// im unsure as to why this isn't w o r k i n g 
+        static int[,] brettspiel = new int[3, 3] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };// im unsure as to why this isn't w o r k i n g ... now it is working yay
 
-        static void BoardGame() // is the board. fun fact brettspiel is german for board game
+        static void BoardGame() // is the board. fun fact brettspiel is german for board game. I'm bad at german so hopefully I spelled that right
         {
 
   
@@ -24,22 +25,31 @@ namespace ttt_test2
                
             
         }
+        static void winCheck(bool win, int play)
+        {
+            if (brettspiel[0, 0] == 1 && brettspiel[0, 1] == 1 && brettspiel[0, 2] == 1)
+            {
+                win = true;
+                play = 1;
+            }
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("To play input the number you want your space to go in");
 
-            bool turn = true;
+            int turn = 1; // lets turn into a int instead of a bool
             bool win = false;
-           
+            int play = 0;
+            // bool GameRun = false;
+
             while (win == false)
             {
-                for (int rounds = 0; rounds < 9;) // MOVE THIS DOWN 
+                for (int rounds = 0; rounds <= 9;) // MOVE THIS DOWN ... COMPLETE 
                 {
                     BoardGame();
                     // finally I did it   YYIIPPPEEEEE . ..  wait how will I change parts to x or o . . . oh no . . .            . . .
 
-
-                    if (turn == true) // turn system
+                    if (turn == 1) // turn system
                     {
 
                         Console.WriteLine();
@@ -54,27 +64,27 @@ namespace ttt_test2
                         {
                             if (input == 1)//1
                             {
-                                if (brettspiel[0, 0] == 2 || brettspiel[0,0] ==1)
+                                if (brettspiel[0, 0] == 2 || brettspiel[0, 0] == 1)
                                 {
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 else
                                 {
                                     brettspiel[0, 0] = 1;
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 //////////////////////////
                             }
                             if (input == 2)//2
                             {
-                                if(brettspiel[0,1] == 2 || brettspiel[0, 1] == 1)
+                                if (brettspiel[0, 1] == 2 || brettspiel[0, 1] == 1)
                                 {
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 else
                                 {
                                     brettspiel[0, 1] = 1;
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 ////////////////////////////////////////////////////
                             }
@@ -82,12 +92,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[0, 2] == 2 || brettspiel[0, 2] == 1)
                                 {
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 else
                                 {
                                     brettspiel[0, 2] = 1;
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 //////////////////////////
                             }
@@ -95,12 +105,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[1, 0] == 2 || brettspiel[1, 0] == 1)
                                 {
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 else
                                 {
                                     brettspiel[1, 0] = 1;
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 ////////////////////////////////////////////////////
                             }
@@ -108,12 +118,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[1, 1] == 2 || brettspiel[1, 1] == 1)
                                 {
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 else
                                 {
                                     brettspiel[1, 1] = 1;
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 //////////////////////////
                             }
@@ -121,12 +131,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[1, 2] == 2 || brettspiel[1, 2] == 1)
                                 {
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 else
                                 {
                                     brettspiel[1, 2] = 1;
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 ////////////////////////////////////////////////////
                             }
@@ -134,12 +144,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[2, 0] == 2 || brettspiel[2, 0] == 1)
                                 {
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 else
                                 {
                                     brettspiel[2, 0] = 1;
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 //////////////////////////
                             }
@@ -147,12 +157,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[2, 1] == 2 || brettspiel[2, 1] == 1)
                                 {
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 else
                                 {
                                     brettspiel[2, 1] = 1;
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 ////////////////////////////////////////////////////
                             }
@@ -160,38 +170,40 @@ namespace ttt_test2
                             {
                                 if (brettspiel[2, 2] == 2 || brettspiel[2, 2] == 1)
                                 {
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 else
                                 {
                                     brettspiel[2, 2] = 1;
-                                    turn = false;
+                                    turn = 2;
                                 }
+
                                 //////////////////////////
                             }
 
 
 
-                            else if(input > 0 || input <= 9)
+                            else if (input > 0 || input <= 9)
                             {
-                               Console.Clear();
-                               
+                                Console.Clear();
+
                             }
                             // end of input number
 
-                           
+
                         }
                         else
                         {
                             Console.Clear(); // clears things
-                            
-                            
+
+
                         }
-                       
-                        
+
+
                     }       // this looks awful    . .  .                                 my stupid little head is gonna implode
-                    else
+                    else if(turn == 2)
                     {
+
 
                         Console.WriteLine();
                         Console.WriteLine("1 2 3");
@@ -206,12 +218,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[0, 0] == 1 || brettspiel[0, 0] == 2)
                                 {
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 else
                                 {
                                     brettspiel[0, 0] = 2;
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 ////////////////////////////////////////////////////
                             }
@@ -219,12 +231,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[0, 1] == 1 || brettspiel[0, 1] == 2)
                                 {
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 else
                                 {
                                     brettspiel[0, 1] = 2;
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 //////////////////////////
                             }
@@ -232,12 +244,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[0, 2] == 1 || brettspiel[0, 2] == 2)
                                 {
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 else
                                 {
                                     brettspiel[0, 2] = 2;
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 ////////////////////////////////////////////////////
                             }
@@ -245,12 +257,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[1, 0] == 1 || brettspiel[1, 0] == 2)
                                 {
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 else
                                 {
                                     brettspiel[1, 0] = 2;
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 //////////////////////////
                             }
@@ -258,12 +270,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[1, 1] == 1 || brettspiel[1, 1] == 2)
                                 {
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 else
                                 {
                                     brettspiel[1, 1] = 2;
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 ////////////////////////////////////////////////////
                             }
@@ -271,12 +283,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[1, 2] == 1 || brettspiel[1, 2] == 2)
                                 {
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 else
                                 {
                                     brettspiel[1, 2] = 2;
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 //////////////////////////
                             }
@@ -284,12 +296,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[2, 0] == 1 || brettspiel[2, 0] == 2)
                                 {
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 else
                                 {
                                     brettspiel[2, 0] = 2;
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 ////////////////////////////////////////////////////
                             }
@@ -297,12 +309,12 @@ namespace ttt_test2
                             {
                                 if (brettspiel[2, 1] == 1 || brettspiel[2, 1] == 2)
                                 {
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 else
                                 {
                                     brettspiel[2, 1] = 2;
-                                    turn = true;
+                                    turn = 1;
                                 }
                                 //////////////////////////
                             }
@@ -310,29 +322,53 @@ namespace ttt_test2
                             {
                                 if (brettspiel[2, 2] == 1 || brettspiel[2, 2] == 2)
                                 {
-                                    turn = false;
+                                    turn = 2;
                                 }
                                 else
                                 {
                                     brettspiel[2, 2] = 2;
-                                    turn = true;
+                                    turn = 1;
                                 }
                             }
                             else
                             {
                                 Console.Clear();
-                            } 
+                            }
                         }
                         else
                         {
                             Console.Clear();
-                        }
+                        }///// WIN FINDER UNDER HERE
+
+
                         rounds++;
                     }
+                    
+                        
+                     
                 }
+               
+                //
+                if(win == true)
+                {
+                    if(play == 1)
+                    {
+                        Console.WriteLine("Player 1 has won");
+                    }
+                    else if(play == 2)
+                    {
+                        Console.WriteLine("Player 2 has won");
+                    }
 
-            }
+                }
+                
+            }// end of the win while loop
+
+            
+
+           
         }
+
     }
 }
 
