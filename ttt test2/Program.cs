@@ -2,56 +2,120 @@
 using System.Security.Cryptography.X509Certificates;
 
 namespace ttt_test2
-{// IM SURE THERE IS A WAY EASIER WAY TO WRITE THIS BUT IM NOT SMART AND DON'T REALLY KNOW WHAT IM DOING SO     OH WELL . . . 
-
+{
     internal class Program
-    {
-       
-        static int[,] brettspiel = new int[3, 3] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };// im unsure as to why this isn't w o r k i n g ... now it is working yay
-
+    {      
+        static int[,] brettspiel = new int[3, 3] { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
+        static int turn = 1;
+        static bool win = false;
+        //static int play = 0;  
         static void BoardGame() // is the board. fun fact brettspiel is german for board game. I'm bad at german so hopefully I spelled that right
         {
-
-  
                 for (var row = 0; row < brettspiel.GetLength(0); row++)
                 {
                     for (var col = 0; col < brettspiel.GetLength(1); col++)
                     {
                         Console.Write($"{brettspiel[row, col]}" + " ");
-
                     }
                     Console.WriteLine("");
-                }
-               
-            
+                }           
         }
-        static void winCheck(bool win, int play)
+        static void WinCheck()
         {
             if (brettspiel[0, 0] == 1 && brettspiel[0, 1] == 1 && brettspiel[0, 2] == 1)
             {
                 win = true;
-                play = 1;
+                Console.WriteLine("Player 1 wins");
+            }
+            if (brettspiel[1, 0] == 1 && brettspiel[1, 1] == 1 && brettspiel[1, 2] == 1)
+            {
+                win = true;
+                Console.WriteLine("Player 1 wins");
+            }
+            if (brettspiel[2, 0] == 1 && brettspiel[2, 1] == 1 && brettspiel[2, 2] == 1)
+            {
+                win = true;
+                Console.WriteLine("Player 1 wins");
+            }
+            if (brettspiel[0, 0] == 1 && brettspiel[1, 0] == 1 && brettspiel[2, 0] == 1)
+            {
+                win = true;
+                Console.WriteLine("Player 1 wins");
+            }
+            if (brettspiel[0, 1] == 1 && brettspiel[1, 1] == 1 && brettspiel[2, 1] == 1)
+            {
+                win = true;
+                Console.WriteLine("Player 1 wins");
+            }
+            if (brettspiel[0, 2] == 1 && brettspiel[1, 2] == 1 && brettspiel[2, 2] == 1)// 369
+            {
+                win = true;
+                Console.WriteLine("Player 1 wins");
+            }
+            if (brettspiel[0, 0] == 1 && brettspiel[1, 1] == 1 && brettspiel[2, 2] == 1)//159
+            {
+                win = true;
+                Console.WriteLine("Player 1 wins");
+            }
+            if (brettspiel[2, 0] == 1 && brettspiel[1, 1] == 1 && brettspiel[0, 2] == 1)//753
+            {
+                win = true;
+                Console.WriteLine("Player 1 wins");
+            }
+            /////////////////////////////////////////////////////////////////////////////player 2
+            if (brettspiel[0, 0] == 2 && brettspiel[0, 1] == 2 && brettspiel[0, 2] == 2)
+            {
+                win = true;
+                Console.WriteLine("Player 2 wins");
+            }
+            if (brettspiel[1, 0] == 2 && brettspiel[1, 1] == 2 && brettspiel[1, 2] == 2)
+            {
+                win = true;
+                Console.WriteLine("Player 2 wins");
+            }
+            if (brettspiel[2, 0] == 2 && brettspiel[2, 1] ==2 && brettspiel[2, 2] == 2)
+            {
+                win = true;
+                Console.WriteLine("Player 2 wins");
+            }
+            if (brettspiel[0, 0] == 2 && brettspiel[1, 0] == 2 && brettspiel[2, 0] == 2)
+            {
+                win = true;
+                Console.WriteLine("Player 2 wins");
+            }
+            if (brettspiel[0, 1] == 2 && brettspiel[1, 1] == 2 && brettspiel[2, 1] == 2)
+            {
+                win = true;
+                Console.WriteLine("Player 2 wins");
+            }
+            if (brettspiel[0, 2] == 2 && brettspiel[1, 2] == 2 && brettspiel[2, 2] == 2)// 369
+            {
+                win = true;
+                Console.WriteLine("Player 2 wins");
+            }
+            if (brettspiel[0, 0] == 2 && brettspiel[1, 1] == 2 && brettspiel[2, 2] == 2)//159
+            {
+                win = true;
+                Console.WriteLine("Player 2 wins");
+            }
+            if (brettspiel[2, 0] == 2 && brettspiel[1, 1] == 2 && brettspiel[0, 2] == 2)//753
+            {
+                win = true;
+                Console.WriteLine("Player 2 wins");
             }
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("To play input the number you want your space to go in");
-
-            int turn = 1; // lets turn into a int instead of a bool
-            bool win = false;
-            int play = 0;
-            // bool GameRun = false;
-
+            Console.WriteLine("To play input the number you want your space to go in");          
             while (win == false)
             {
                 for (int rounds = 0; rounds <= 9;) // MOVE THIS DOWN ... COMPLETE 
                 {
                     BoardGame();
-                    // finally I did it   YYIIPPPEEEEE . ..  wait how will I change parts to x or o . . . oh no . . .            . . .
-
+                   
                     if (turn == 1) // turn system
                     {
-
+                        WinCheck();
                         Console.WriteLine();
                         Console.WriteLine("1 2 3");
                         Console.WriteLine("4 5 6");
@@ -70,7 +134,7 @@ namespace ttt_test2
                                 }
                                 else
                                 {
-                                    brettspiel[0, 0] = 1;
+                                    brettspiel[0, 0] = 1;                                  
                                     turn = 2;
                                 }
                                 //////////////////////////
@@ -83,7 +147,7 @@ namespace ttt_test2
                                 }
                                 else
                                 {
-                                    brettspiel[0, 1] = 1;
+                                    brettspiel[0, 1] = 1;                                 
                                     turn = 2;
                                 }
                                 ////////////////////////////////////////////////////
@@ -96,7 +160,7 @@ namespace ttt_test2
                                 }
                                 else
                                 {
-                                    brettspiel[0, 2] = 1;
+                                    brettspiel[0, 2] = 1; 
                                     turn = 2;
                                 }
                                 //////////////////////////
@@ -148,7 +212,7 @@ namespace ttt_test2
                                 }
                                 else
                                 {
-                                    brettspiel[2, 0] = 1;
+                                    brettspiel[2, 0] = 1;  
                                     turn = 2;
                                 }
                                 //////////////////////////
@@ -161,7 +225,7 @@ namespace ttt_test2
                                 }
                                 else
                                 {
-                                    brettspiel[2, 1] = 1;
+                                    brettspiel[2, 1] = 1;                                   
                                     turn = 2;
                                 }
                                 ////////////////////////////////////////////////////
@@ -174,37 +238,26 @@ namespace ttt_test2
                                 }
                                 else
                                 {
-                                    brettspiel[2, 2] = 1;
+                                    brettspiel[2, 2] = 1;                                    
                                     turn = 2;
                                 }
-
                                 //////////////////////////
                             }
-
-
-
                             else if (input > 0 || input <= 9)
                             {
                                 Console.Clear();
-
                             }
                             // end of input number
-
-
                         }
                         else
                         {
                             Console.Clear(); // clears things
-
-
                         }
-
-
                     }       // this looks awful    . .  .                                 my stupid little head is gonna implode
                     else if(turn == 2)
                     {
 
-
+                        WinCheck();
                         Console.WriteLine();
                         Console.WriteLine("1 2 3");
                         Console.WriteLine("4 5 6");
@@ -338,37 +391,12 @@ namespace ttt_test2
                         else
                         {
                             Console.Clear();
-                        }///// WIN FINDER UNDER HERE
-
-
+                        }
                         rounds++;
                     }
-                    
-                        
-                     
                 }
-               
-                //
-                if(win == true)
-                {
-                    if(play == 1)
-                    {
-                        Console.WriteLine("Player 1 has won");
-                    }
-                    else if(play == 2)
-                    {
-                        Console.WriteLine("Player 2 has won");
-                    }
-
-                }
-                
             }// end of the win while loop
-
-            
-
-           
         }
-
     }
 }
 
