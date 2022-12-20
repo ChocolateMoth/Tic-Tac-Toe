@@ -387,7 +387,7 @@ namespace ttt_test2
       and it detects IF a number has already been placed there. if a number has then it would re-roll the random number gen.
 */
 /*
-    
+     // lets turn into a int instead of a bool
  /*
         public toZero(int brettspiel)
         {
